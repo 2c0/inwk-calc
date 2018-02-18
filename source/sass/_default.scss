@@ -1,0 +1,31 @@
+@import 'variables';
+// GENERAL
+body {
+	margin: 0;
+	min-width: 250px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+// HEADER 
+header {
+	background-color: $color-bg-blue;
+	padding: 30px 40px;
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.section-form {
+	background-color: $color-bg-gray; // FORM
+	.form-wrap {
+		padding: 50px;
+		width: 70%;
+		margin: 0 auto; //border: 1px solid $dark-gray;
+		background-color: $almost-white;
+	}
+}

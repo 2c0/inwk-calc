@@ -1,0 +1,44 @@
+// ITEMS
+.section-item {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        #item-container {
+            width: 70%;
+            margin: 50px auto;
+            padding: 50px;
+            min-height: 200px;
+            border: 1px solid black !important;
+        }
+    }
+    .item-wrap {
+        background: #eee;
+
+        &:nth-child(odd) {
+            background: #f9f9f9;
+        }
+        &:hover {
+            background: #ddd;
+          }
+        .item-name,
+        .item-price {
+            display: inline-block;
+            width: 30%;
+        }
+        .item-name {
+            margin-right: 20px;
+        }
+    }
+}
+
+/* .close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 12px 16px 12px 16px;
+	&:hover {
+		background-color: $background_color_1;
+		color: $color_2;
+	}
+} */

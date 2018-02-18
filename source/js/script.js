@@ -18,8 +18,6 @@ function createCheckboxes() {
   }
 }
 
-createCheckboxes();
-
 // Click on a close button to hide the current list 
 
 for (var i = 0; i < close.length; i++) {
@@ -36,8 +34,8 @@ for (var i = 0; i < close.length; i++) {
 }
 
 
-// Create a new list item when clicking on the "Add" button
-function totalFn(initPrice) {
+// Function to calculate price
+function totalFn() {
   var initPrice = Number(document.getElementById('job-price').value);
   var jobName = document.getElementById('job-name').value;
 
@@ -57,6 +55,7 @@ function totalFn(initPrice) {
 
 }
 
+// Create a new list item when clicking on the "Calc" button
 function addItem() {
   
   //get initial value
@@ -70,36 +69,36 @@ function addItem() {
   itemName.className = 'item-name';
   var itemPrice = document.createElement("div");
   itemPrice.className = 'item-price';
-  itemWrap.appendChild(itemName);
-  itemWrap.appendChild(itemPrice);
-  var t = document.createTextNode(jobName);
-  itemName.appendChild(t);
-  var p = document.createTextNode(initPrice);
-  itemPrice.appendChild(p);
+
  
 
   // condition for calculation
   if (initPrice === 0 && jobName === "") {
     alert("You must fill in something!");
-  } if (initPrice === 0) {
+  } else if (initPrice === 0) {
     alert("You must fill in price");
-  } if (jobName === "") {
+  } else if (jobName === "") {
     alert("You must fill in name");
   } else {
-    var root = document.getElementById("root");
-    root.appendChild(itemWrap);
-    root.appendChild(itemPrice);
+    var itemCont = document.getElementById("item-container");
+    itemCont.appendChild(itemWrap);
+    itemWrap.appendChild(itemName);
+    itemWrap.appendChild(itemPrice);
+    var t = document.createTextNode(jobName);
+    itemName.appendChild(t);
+    var p = document.createTextNode(initPrice);
+    itemPrice.appendChild(p);
   }
   document.getElementById('job-price').value = '';
   document.getElementById('job-name').value = '';
 }
 
 /* function getItems() {
-  var items = document.getElementsByClassName("items");
+  var items = document.getElementsByClassName("item-price");
   var itemCount = items.length;
   var total = 0;
   for (var i = 0; i < itemCount; i++) {
-    total = total + parseInt(items[i].value);
+    total = total + parseInt(items[i].innerText);
   }
   document.getElementById('tot').value = total;
 } */

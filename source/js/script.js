@@ -6,7 +6,7 @@ var calcBtn = document.getElementById('calcBtn');
 
 //var initPrice = document.getElementById('job-price').value;
 
-function createCheckboxes() {
+/* function createCheckboxes() {
 
   var i;
 
@@ -16,11 +16,11 @@ function createCheckboxes() {
     input.className = "checkbox-btn";
     myNodelist[i].appendChild(input);
   }
-}
+} */
 
 // Click on a close button to hide the current list 
 
-for (var i = 0; i < close.length; i++) {
+/* for (var i = 0; i < close.length; i++) {
   close[i].addEventListener('click', function () {
     var div = this.parentElement;
     setTimeout(function () {
@@ -31,7 +31,7 @@ for (var i = 0; i < close.length; i++) {
 
     }, 500);
   });
-}
+} */
 
 
 // Function to calculate price
@@ -45,13 +45,37 @@ function totalFn() {
 
   //var sum = Math.round(initPrice + margin + extraMargin, 2);
   var sumNoTaxNoExtra = Math.round(initPrice + margin, 2);
+  var sumNoTaxExtra = Math.round(initPrice + margin + extraMargin, 2);
   var sumNoExtra = Math.round(initPrice + tax + margin, 2);
   var sumAll = Math.round(initPrice + tax + margin + extraMargin, 2);
 
+  var taxChecked = document.getElementById("tax-free").checked;
+  var extraChecked = document.getElementById("extra-margin").checked;
 
-  console.log(jobName + " " + sumNoTaxNoExtra);
-  console.log(jobName + " " + sumNoExtra);
-  console.log(jobName + " " + sumAll);
+  if (taxChecked && extraChecked) {
+    return sumNoTaxExtra;
+  } else if (taxChecked) {
+    return sumNoTaxNoExtra;
+  } else if (extraChecked) {
+    return sumAll;
+  } else if (!taxChecked && !extraChecked){
+    return sumNoTaxNoExtra;
+  }
+
+
+/*   var expr = 'Papayas';
+  switch (expr) {
+    case 'Oranges':
+      console.log('Oranges are $0.59 a pound.');
+      break;
+    case 'Mangoes':
+    case 'Papayas':
+      console.log('Mangoes and papayas are $2.79 a pound.');
+      // expected output: "Mangoes and papayas are $2.79 a pound."
+      break;
+    default:
+      console.log('Sorry, we are out of ' + expr + '.');
+  } */
 
 }
 
@@ -71,7 +95,6 @@ function addItem() {
   itemPrice.className = 'item-price';
 
  
-
   // condition for calculation
   if (initPrice === 0 && jobName === "") {
     alert("You must fill in something!");
@@ -86,22 +109,32 @@ function addItem() {
     itemWrap.appendChild(itemPrice);
     var t = document.createTextNode(jobName);
     itemName.appendChild(t);
-    var p = document.createTextNode(initPrice);
+
+    var price = totalFn();
+    var p = document.createTextNode(price);
     itemPrice.appendChild(p);
+    /* var getFinalP = getTotalPrice();
+    var totalSumEl = document.getElementById("total-sum");
+    var fp = document.createTextNode(getFinalP);
+    totalSumEl.replaceChild(fp, textno); */
+
   }
   document.getElementById('job-price').value = '';
   document.getElementById('job-name').value = '';
+  getTotalPrice();
 }
 
-/* function getItems() {
+function getTotalPrice() {
   var items = document.getElementsByClassName("item-price");
   var itemCount = items.length;
   var total = 0;
   for (var i = 0; i < itemCount; i++) {
     total = total + parseInt(items[i].innerText);
   }
-  document.getElementById('tot').value = total;
-} */
+  document.getElementById('total-sum').value = total;
+
+  //return total;
+}
 
 
 calcBtn.addEventListener('click', addItem);

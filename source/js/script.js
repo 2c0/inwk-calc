@@ -41,47 +41,58 @@ function totalFn() {
 
   var tax = initPrice * 0.07;
   var margin = initPrice * 0.11;
-  var extraMargin = initPrice * 0.05;
+  var extraMargin = initPrice * 0.06;
 
   //var sum = Math.round(initPrice + margin + extraMargin, 2);
-  var sumNoTaxNoExtra = Math.round(initPrice + margin, 2);
-  var sumNoTaxExtra = Math.round(initPrice + margin + extraMargin, 2);
-  var sumNoExtra = Math.round(initPrice + tax + margin, 2);
-  var sumAll = Math.round(initPrice + tax + margin + extraMargin, 2);
+  var sumNoTaxNoExtra = Math.round((initPrice + margin)*100)/100;
+  var sumNoTaxExtra = Math.round((initPrice + margin + extraMargin)*100)/100;
+  var sumNoExtra = Math.round((initPrice + tax + margin)*100)/100;
+  var sumAll = Math.round((initPrice + tax + margin + extraMargin)*100)/100;
 
   var taxChecked = document.getElementById("tax-free").checked;
   var extraChecked = document.getElementById("extra-margin").checked;
 
   if (taxChecked && extraChecked) {
+    console.log('sum no tax and extra');
     return sumNoTaxExtra;
+
   } else if (taxChecked) {
+    console.log('tax free no extra');
     return sumNoTaxNoExtra;
+
   } else if (extraChecked) {
+    console.log('extra');
     return sumAll;
-  } else if (!taxChecked && !extraChecked){
-    return sumNoTaxNoExtra;
+  } else if (!taxChecked && !extraChecked) {
+    console.log('tax + no extra');
+    return sumNoExtra;
+
+  } else {
+    console.log('no condition');
   }
 
 
-/*   var expr = 'Papayas';
-  switch (expr) {
-    case 'Oranges':
-      console.log('Oranges are $0.59 a pound.');
-      break;
-    case 'Mangoes':
-    case 'Papayas':
-      console.log('Mangoes and papayas are $2.79 a pound.');
-      // expected output: "Mangoes and papayas are $2.79 a pound."
-      break;
-    default:
-      console.log('Sorry, we are out of ' + expr + '.');
-  } */
+
+
+  /*   var expr = 'Papayas';
+    switch (expr) {
+      case 'Oranges':
+        console.log('Oranges are $0.59 a pound.');
+        break;
+      case 'Mangoes':
+      case 'Papayas':
+        console.log('Mangoes and papayas are $2.79 a pound.');
+        // expected output: "Mangoes and papayas are $2.79 a pound."
+        break;
+      default:
+        console.log('Sorry, we are out of ' + expr + '.');
+    } */
 
 }
 
 // Create a new list item when clicking on the "Calc" button
 function addItem() {
-  
+
   //get initial value
   var initPrice = Number(document.getElementById('job-price').value);
   var jobName = document.getElementById('job-name').value;
@@ -94,7 +105,7 @@ function addItem() {
   var itemPrice = document.createElement("div");
   itemPrice.className = 'item-price';
 
- 
+
   // condition for calculation
   if (initPrice === 0 && jobName === "") {
     alert("You must fill in something!");

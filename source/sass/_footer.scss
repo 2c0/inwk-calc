@@ -3,8 +3,11 @@
 	background: $background-color;
 	width: 100%;
 	color: #fff;
-	padding-top: 4rem;
-	padding-bottom: .5rem;
+
+	@media screen and (min-width: 768px) {
+		padding: 4rem;
+	}
+
 	.container-fluid {
 		padding: 0;
 	}
@@ -45,7 +48,6 @@
 	}
 	@media screen and (max-width: 768px) {
 		.nav-footer {
-			width: auto;
 			display: inline;
 		}
 	}

@@ -5,6 +5,20 @@ body {
 	min-width: 250px;
 }
 
+h1 {
+	font-size: 24px;
+	@media screen and (min-width: $breakpoint-tablet) {
+		font-size: 36px;
+	}
+}
+
+h2 {
+	font-size: 18px;
+	@media screen and (min-width: $breakpoint-tablet) {
+		font-size: 30px;
+	}
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -12,7 +26,12 @@ body {
 // HEADER 
 header {
 	background-color: $color-bg-blue;
-	padding: 30px 40px;
+	padding: 10px;
+
+	@media screen and (min-width: $breakpoint-tablet) {
+		padding: 30px 40px;
+	}
+
 	&:after {
 		content: "";
 		display: table;
@@ -23,9 +42,12 @@ header {
 .section-form {
 	background-color: $color-bg-gray; // FORM
 	.form-wrap {
-		padding: 50px;
-		width: 70%;
+		padding: 25px;
 		margin: 0 auto; //border: 1px solid $dark-gray;
 		background-color: $almost-white;
+		@media screen and (min-width: $breakpoint-tablet) {
+			width: 70%;
+			padding: 50px;
+		}
 	}
 }
